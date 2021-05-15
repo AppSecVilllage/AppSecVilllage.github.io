@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>App Sec Secure Coding</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/arta.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">App Sec Secure Coding</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar_main">
+            <ul class="navbar-nav me-auto mb-2">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Some Link</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Hello Coders!</h1>
+        <p class="col-md-8 fs-4">Welcome to the Secure Coding Principles CTF! This is geared towards beginners to both App Sec, and CTFs. People in a more professional level may find this easier to do, but perhaps you can still learn something new. There's a catch with this category of CTF, however. Unlike traditional categories. You only have *one* chance to enter a flag. Guessing will not help you here. Regardless of what answer you select, you will receieve a flag. So be sure to really analyze before selecting. If you happen to mess up, no worries! Refreshing the page should help when looking for a new flag, but remember you can only enter one flag, per challenge, per team! To explain more in depth of what you're looking at here, we will provide some background information on what the question is asking, so if you don't know what the question is asking, it will explain and define it to help solidify your knowledge, and guide you to the answer. This category was inspired by OWASP's Secure Coding Dojo.</p>
+        <a href="#getstarted" class="btn btn-primary btn-lg" type="button">Get started</a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row" id="getstarted">
+
+        <!-- Section -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Input Validation (Freebie)</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Select the text best describing proper input validation.<br/>Click on the text/code block best describing the description. In this case the first answer is correct.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q1:Input Validation question here</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{Y0u_4R3_Luck4y}" >
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+Using PHP to check that an order quantity is numeric and not a negative number
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{PHP_1s_H4rd}">
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+Displaying a text box informing the user that only numeric values should be used
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Deserialization</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Unsafe deserialization of un-trusted data, such as that provided by the user, can lead to arbitrary code execution.<br/>Select the code block that handles un-trusted data in a safe manner.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q2: Question here</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{th4nk_y0u_4_pl4y1nG}" >
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+@app.route('/', methods=['GET'])
+def index():
+    user_obj = request.cookies.get('uuid')
+    if user_obj == None:
+        msg = "Invalid user. You're all set now!"
+        response = make_response(msg)
+        user_obj = str(uuid.uuid4())
+        response.set_cookie('uuid', b64encode(json.dumps(user_obj)))
+        return response
+    else:
+        return make_response("Hey there! {}!".format(json.loads(b64decode(user_obj))))
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{4M_1_C0rr3ct}">
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+@app.route('/', methods=['GET'])
+def index():
+    user_obj = request.cookies.get('uuid')
+    if user_obj == None:
+        msg = "Invalid user. You're all set now!"
+        response = make_response(msg)
+        user_obj = str(uuid.uuid4())
+        response.set_cookie('uuid', b64encode(pickle.dumps(user_obj)))
+        return response
+    else:
+        return make_response("Hey there! {}!".format(pickle.loads(b64decode(user_obj))))
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Output encoding</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Encoding user data when outputting it prevents attacks such as cross site scripting.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q3: Select the code that properly encodes</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{S4t4n_5ays_H3ll0}" >
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+&lt;script>var username=&quot;&lt?php echo(stripslashes($_GET['username'])); ?>&quot;;&lt;/script>
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{Du_h4St_m1cH}">
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+&lt;script>var username=&quot;&lt?php echo(htmlspecialchars($_GET['username'])); ?>&quot;;&lt;/script>
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Generic Error Codes</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                      Generic error codes are used all over the web; This makes it unaversally understood what, and where, something went wrong in case of an error.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q4: Which one of these options is considered a generic error code?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{Pu5h1ng_L3ft}" >
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+HTTP Error 500 (Internal Server Error)
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{J4_z3k3r_W3L}">
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+Your search did not return any results. Please try again with other information
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Server Side Validation</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Server Side Validation is important when handling data of any kind, especially user-provided data.<br/>Server side validation ensures that the data is receives is what it expects to receive, to prevent any issues.
+                    </p>
+                    <hr>
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q5: Which code example demonstrates server side validation? </p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{S3cur3_C0d1ng}" >
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+if (isset($_POST['counter'])) {
+    $counter = $_POST['counter']
+    if (is_numeric(counter) && intval(counter) > 0) {
+        $GLOBALS["total_counter"] += intval(counter)
+    }
+}
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{D0_1_W4nnn4Kn0w}~">
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+$GLOBALS["total_counter"] += intval($_POST['counter'])
+#don't make things more complicated than they have to be!
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Cross-Site Request Forgery Prevention</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Cross-Site Request Forgery Prevention, or CSRF prevention, is ensuring that incoming requests originate from the user's action on your website, and not from a malicious third-praty site your user happens to browse.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q6: Which code block prevents CSRF?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{51n4s4pp3l54p}" >
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+if (!empty($_POST['token'])) {
+    if (hash_equals($_SESSION['token'], $_POST['token'])) {
+        // Proceed to process the form data
+    } else {
+        // Log this as a warning and keep an eye on these attempts
+    }
+}
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{5n0rf13ts}">
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+if (!empty($_POST['token'])) {
+    if ($_POST['token'])) {
+        // Proceed to process the form data
+    } else {
+        // Log this as a warning and keep an eye on these attempts
+    }
+}
+
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Principle of Least Privilege</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        The principle of least privilege is pertaining to reducing the amount of permissions a user has on a system. This helps protect data, credidentials, and assets. The principle of least privilege functions on the assumption that everyone and everything is a potential threat, therefore your privilege is restricted to strictly what is necessary to get the job done.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q7: Which example demonstrates the principle of least privilege?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{Purpl3_T34m}" >
+                                        <div>
+                                            <pre>
+                                                <code class="bash">
+guest@kali:/$ cd adminfolder/
+guest@kali:/adminfolder$
+
+
+admin@kali:/$ cd adminfolder/
+admin@kali:/adminfolder$
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{My_n4m3_1s_54BL3}">
+                                        <div>
+                                            <pre>
+                                                <code class="bash">
+guest@kali:/$ cd adminfolder/
+bash: cd: adminfolder/: Permission denied
+guest@kali:/$
+
+
+admin@kali://$ cd adminfolder/
+admin@kali:/adminfolder$
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Database Security</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Database security info (SQLi can apply here) Answer 1 is correct.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q8: Which of the following code contains an SQL injection?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{good_N1ght}" >
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+&lt;?php
+$offset = $_GET["offset"];
+$query  = "SELECT id, name FROM products ORDER BY name LIMIT 20 OFFSET $offset";
+$result = pg_query($conn, $query);
+?&gt;
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{5tr3ss3d_0ut}">
+                                        <div>
+                                            <pre>
+                                                <code class="php">
+&lt;?php
+$offset = $_GET["offset"];
+$query  = "SELECT id, name FROM products ORDER BY name LIMIT 20 OFFSET $1";
+$result = pg_query_params($conn, $query, $offset);
+?$gt;
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Cryptographic Practices</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Cryptographic practices is the practice of mathematical techniques toward achieving confidentiality, integrity and etc as defined by OWASP.Cryptographic practices should be applied to the application level, database level, hardware level, and filesystem level. You should refrain (keyword for never,) create your own design your own cryptographic protocols, or custom algorithms. Instead, consider using peer reviewed and tested protocols. In this specific section we will focus on secure random number generation. Cryptographically Secure Pseudo-Random Number Generators are focused on providing a greater amount of entropy. They're safe to use for security sensitive functionality. While these are more CPU intensive, than their counter part Pseudo Random Number Generators or PRNG, they are able to produce a much higher quality of random generated numbers.
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q9: Which code block demonstrates Cryptographically Secure Functions?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{Mr5_5k3ll1}" >
+                                        <div>
+                                            <pre>
+                                                <code class="python">
+pythonsecrets.secrets()
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{F4k3_Y0U_0UT}">
+                                        <div>
+                                            <pre>
+                                                <code class="python">
+pythonrandom.random()
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+        <div class="col-lg-12 mb-3">
+            <div class="card mr-2 ml-2">
+                <div class="card-header">
+                    <h5>Code Obfuscation</h5>
+                </div>
+                <div class="card-body">
+                    <p class="w-75">
+                        Code obfuscation is when a programmer makes it very difficult for their code to be read by another human. It's a practice of Security through Obscurity. While this shouldn't be the only method employed in secure coding practices, it certianly helps. Some practices of code obfuscation may include name obfuscaition, which variables are often named uselessly, or even deceptively. There could also be, comment, code or data confusion, which makes code look like comments, or create a confusing syntax with data. Double coding is another, which could display interesting shapes or in a poetry like form to make readability difficult. Second answer is correct
+                    </p>
+                    <hr>
+
+                        <!-- Question block -->
+                        <div class="question-block">
+                            <p class="w-75 fw-bold">Q10: Which of these examples shows obfuscated code?</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="#!" class="block-link" flag="ASV{4ng3l_0f_Sm4LL_D34th_4nd_th3_C0ding_Sc3n3}" >
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+var _0x2665=['9049Ztlxxk','How\x20many\x20columns\x20for\x20your\x20multiplication\x20table?','<td>','15UrOwqH','2866ZOjkSg','86201lRTKIe','225484UBcuFb','570668socvIJ','517161drLjfs','108120eRykqa','252uyMFcg','</tr>','53nRxsOS'];var _0x2122bc=_0x1806;(function(_0x3a232b,_0x3cd479){var _0x2be606=_0x1806;while(!![]){try{var _0x581963=parseInt(_0x2be606(0x14e))+parseInt(_0x2be606(0x157))*-parseInt(_0x2be606(0x14c))+parseInt(_0x2be606(0x150))+parseInt(_0x2be606(0x14f))+-parseInt(_0x2be606(0x14d))+parseInt(_0x2be606(0x151))*parseInt(_0x2be606(0x158))+parseInt(_0x2be606(0x154))*parseInt(_0x2be606(0x153));if(_0x581963===_0x3cd479)break;else _0x3a232b['push'](_0x3a232b['shift']());}catch(_0x1a7a90){_0x3a232b['push'](_0x3a232b['shift']());}}}(_0x2665,0xd6aaf));var rows=prompt('How\x20many\x20rows\x20for\x20your\x20multiplication\x20table?'),cols=prompt(_0x2122bc(0x155));function _0x1806(_0x1b134b,_0x1901ba){_0x1b134b=_0x1b134b-0x14c;var _0x266555=_0x2665[_0x1b134b];return _0x266555;}if(rows==''||rows==null)rows=0xa;if(cols==''||cols==null)cols=0xa;createTable(rows,cols);function createTable(_0x39de12,_0x3e1935){var _0x338ecb=_0x2122bc,_0x1a82c7=0x1,_0x462667='<table\x20border=\x271\x27\x20width=\x27500\x27\x20cellspacing=\x270\x27cellpadding=\x275\x27>';for(i=0x1;i<=_0x39de12;i++){_0x462667=_0x462667+'<tr>';while(_0x1a82c7<=_0x3e1935){_0x462667=_0x462667+_0x338ecb(0x156)+i*_0x1a82c7+'</td>',_0x1a82c7=_0x1a82c7+0x1;}_0x462667=_0x462667+_0x338ecb(0x152),_0x1a82c7=0x1;}_0x462667=_0x462667+'</table>',document['write'](_0x462667);}
+                                                </code>
+                                        </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6 mr-3">
+                                    <a href="#!" class="block-link" flag="ASV{th1s_w4s_EZ}">
+                                        <div>
+                                            <pre>
+                                                <code class="javascript">
+var rows = prompt("How many rows for your multiplication table?");
+var cols = prompt("How many columns for your multiplication table?");
+if(rows == "" || rows == null)
+    rows = 10;
+if(cols== "" || cols== null)
+    cols = 10;
+createTable(rows, cols);
+function createTable(rows, cols) {
+    var j=1;
+    var output = "&lt;table border='1' width='500' cellspacing='0'cellpadding='5'>";
+    for(i=1;i<=rows;i++)
+    {
+        output = output + "&lt;tr>";
+        while(j<=cols)
+        {
+            output = output + "&lt;td>" + i*j + "&lt;/td>";
+            j = j+1;
+        }
+        output = output + "&lt;/tr>";
+        j = 1;
+    }
+    output = output + "&lt;/table>";
+    document.write(output);
+}
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="alert alert-primary collapse" role="alert">
+                                <strong>Your flag: </strong>: <span class="AlertMsg"></span>
+                            </div>
+                            <hr>
+                        </div>
+                       <!-- Question block end -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Section end -->
+
+    </div>
+</div>
+
+<hr>
+
+<footer class="m-3">
+    <p class="text-white">&copy; 2021 App Sec Village.</p>
+</footer>
+
+<!-- /container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+<script>
+    hljs.highlightAll();
+</script>
+<script src="app.js"> </script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
